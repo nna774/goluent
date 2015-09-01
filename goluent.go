@@ -5,6 +5,7 @@ import (
 	"github.com/fluent/fluent-logger-golang/fluent"
 	stdLog "log"
 	"os"
+	"strings"
 )
 
 const (
@@ -51,6 +52,7 @@ func printf(s severity, format string, args ...interface{}) {
 	})
 
 	message := fmt.Sprintf(format, args...)
+	message = strings.Replace(message, "\n", "\\n", -1)
 
 	stdLog.Println(message)
 	if err == nil {
